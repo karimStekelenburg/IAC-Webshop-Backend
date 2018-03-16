@@ -36,9 +36,12 @@ public class Customer implements Serializable{
     @LastModifiedDate
     private Date updatedAt;
 
-    @ManyToOne(optional=false)
-    @JoinColumn(name="address_fk",referencedColumnName="id", insertable = false, updatable = false)
+    @ManyToOne(optional=false, cascade=CascadeType.ALL)
+    @JoinColumn(name="address_fk",referencedColumnName="id")
     private Address homeAddress;
+
+
+
 
     public Long getId() {
         return id;

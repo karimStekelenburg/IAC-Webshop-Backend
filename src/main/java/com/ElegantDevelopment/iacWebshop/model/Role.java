@@ -1,42 +1,37 @@
 package com.ElegantDevelopment.iacWebshop.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Collection;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name = "order_table")
+@Table(name = "role_table")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
-public class Order implements Serializable {
+public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     private Long id;
 
-    @ManyToOne(optional=false)
-    @JoinColumn(name="address_fk",referencedColumnName="id", insertable = false, updatable = false)
-    private Address deliveryAddress;
+    @NotNull
+    private String roleName;
 
-    @ManyToOne(optional=false)
-    @JoinColumn(name="account_fk", referencedColumnName="id")
-    private Account account;
-
-    @OneToMany(mappedBy="order",targetEntity=OrderLine.class,
-            fetch=FetchType.EAGER)
-    private Collection orders;
-
+    @JsonIgnore
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createdAt;
 
+    @JsonIgnore
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
@@ -50,15 +45,11 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public Address getDeliveryAddress() {
-        return deliveryAddress;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setDeliveryAddress(Address deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
-
-
 }
-
-
