@@ -27,12 +27,12 @@ public class Category implements Serializable {
     private String name;
 
     private String description;
-
     @Column(columnDefinition = "LONGBLOB")
     private byte[] image;
 
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToMany(mappedBy="categories", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("categories")
     private List<Product> products;
 
     @Column(nullable = false, updatable = false)

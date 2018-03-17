@@ -46,6 +46,7 @@ public class Product implements Serializable {
             inverseJoinColumns=
             @JoinColumn(name="category_fk", referencedColumnName="id")
     )
+    @JsonIgnoreProperties("products")
     private List<Category> categories;
 
     @OneToMany(mappedBy="product",targetEntity=OrderLine.class, fetch=FetchType.LAZY)
