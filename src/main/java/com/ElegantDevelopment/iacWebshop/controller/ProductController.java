@@ -2,6 +2,7 @@ package com.ElegantDevelopment.iacWebshop.controller;
 
 
 import com.ElegantDevelopment.iacWebshop.exception.ResourceNotFoundException;
+import com.ElegantDevelopment.iacWebshop.model.Category;
 import com.ElegantDevelopment.iacWebshop.model.Product;
 import com.ElegantDevelopment.iacWebshop.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/rest/product")
 public class ProductController {
-
     @Autowired
     ProductRepo productRepo;
 
@@ -34,7 +34,13 @@ public class ProductController {
 
     @PostMapping("")
     public Product createProduct(@Valid @
+
             RequestBody Product product) {
+        List<Category> Lijstje = new ArrayList<Category>();
+        Category cat1 = new Category();
+        cat1.setName("Nieuw");
+        Lijstje.add(cat1);
+        product.setCategories(Lijstje);
         return productRepo.save(product);
     }
 

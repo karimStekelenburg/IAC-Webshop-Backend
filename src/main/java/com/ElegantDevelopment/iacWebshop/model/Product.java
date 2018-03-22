@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
@@ -31,7 +32,7 @@ public class Product implements Serializable {
 
     private String description;
 
-    @NotBlank
+    @NotNull
     private double price;
 
     @Column(columnDefinition = "LONGBLOB")
