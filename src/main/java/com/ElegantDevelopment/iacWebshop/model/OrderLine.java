@@ -46,7 +46,7 @@ public class OrderLine implements Serializable {
     @LastModifiedDate
     private Date updatedAt;
 
-    public double getPrice(){
-        return price;
+    public double getOrderLinePrice(){
+        return price * quantity;
     }
 }

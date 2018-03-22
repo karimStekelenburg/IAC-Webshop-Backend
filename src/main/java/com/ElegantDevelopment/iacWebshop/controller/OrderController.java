@@ -50,7 +50,7 @@ public class OrderController {
         Address customerAddress = user.getCustomer().getHomeAddress();
         double customerAmount = order.getAmount();
 
-        
+//        call method specified in uniqueCode (in seperate Thread?)
 
         return orderRepo.save(order);
     }

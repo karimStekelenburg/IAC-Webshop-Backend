@@ -61,7 +61,7 @@ public class Order implements Serializable {
     public double getAmount(){
         double amount = 0;
         for (OrderLine ol : orderLines){
-            amount += ol.getPrice();
+            amount += ol.getOrderLinePrice();
         }
 
         amount = amount*100;
