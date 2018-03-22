@@ -49,4 +49,5 @@ public class OrderLine implements Serializable {
     public double getOrderLinePrice(){
         return price * quantity;
     }
+
 }
