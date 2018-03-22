@@ -30,7 +30,7 @@ public class Order implements Serializable {
 
     @OneToMany(mappedBy="order",targetEntity=OrderLine.class,
             fetch=FetchType.EAGER)
-    private Collection orders;
+    private Collection<OrderLine> orderLines;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -56,6 +56,19 @@ public class Order implements Serializable {
 
     public void setDeliveryAddress(Address deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
+    }
+
+    public double getAmount(){
+        double amount = 0;
+        for (OrderLine ol : orderLines){
+            amount += ol.getPrice();
+        }
+
+        amount = amount*100;
+        amount = Math.round(amount);
+        amount= amount /100;
+
+        return amount;
     }
 
 

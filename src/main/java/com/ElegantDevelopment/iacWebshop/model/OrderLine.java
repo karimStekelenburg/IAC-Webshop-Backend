@@ -45,4 +45,8 @@ public class OrderLine implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updatedAt;
+
+    public double getPrice(){
+        return price;
+    }
 }

@@ -60,6 +60,12 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.6.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.webshop.soap</groupId>
+			<artifactId>soap</artifactId>
+			<version>1.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -68,6 +74,9 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+
+
 		</plugins>
 	</build>
 

@@ -51,6 +51,7 @@ public class CategoryController {
         category.setImage(categoryDetails.getImage());
 
         return categoryRepo.save(category);
+
     }
 
     @DeleteMapping("/{id}")
@@ -61,5 +62,6 @@ public class CategoryController {
         categoryRepo.delete(category);
 
         return ResponseEntity.ok().build();
+
     }
 }
