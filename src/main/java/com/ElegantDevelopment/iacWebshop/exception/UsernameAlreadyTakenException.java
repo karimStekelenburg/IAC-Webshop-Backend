@@ -5,7 +5,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.CONFLICT)
 public class UsernameAlreadyTakenException extends RuntimeException{
-    public UsernameAlreadyTakenException(String message) {
-        super(message);
+    private String username;
+
+    public UsernameAlreadyTakenException(String username) {
+        super(String.format("Username %s is already taken", username));
     }
+
+    public String getUsername(){
+        return username;
+    }
+
 }

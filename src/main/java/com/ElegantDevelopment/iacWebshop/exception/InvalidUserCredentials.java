@@ -4,8 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.CONFLICT)
-public class InvalidCredentials extends RuntimeException{
-    public InvalidCredentials(String message) {
-        super(message);
+public class InvalidUserCredentials extends RuntimeException{
+    public InvalidUserCredentials(String falseUsername) {
+
+        super(String.format("No account found with username %s", falseUsername));
     }
 }

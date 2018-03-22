@@ -1,6 +1,7 @@
 package com.ElegantDevelopment.iacWebshop.controller;
 
-import com.ElegantDevelopment.iacWebshop.exception.InvalidCredentials;
+import com.ElegantDevelopment.iacWebshop.exception.InvalidPasswordCredentials;
+import com.ElegantDevelopment.iacWebshop.exception.InvalidUserCredentials;
 import com.ElegantDevelopment.iacWebshop.exception.ResourceNotFoundException;
 import com.ElegantDevelopment.iacWebshop.exception.UsernameAlreadyTakenException;
 import com.ElegantDevelopment.iacWebshop.model.User;
@@ -11,13 +12,10 @@ import com.ElegantDevelopment.iacWebshop.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.xml.bind.DatatypeConverter;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -63,7 +61,7 @@ public class UserController {
             RequestBody UserForm userForm) {
 
         if(userRepo.checkUserNameExistance(userForm.getUsername())) {
-            throw new UsernameAlreadyTakenException("Username already exists");
+            throw new UsernameAlreadyTakenException(userForm.getUsername());
         }
 
         User user = new User();
@@ -99,10 +97,10 @@ public class UserController {
         try{
             user = userRepo.getUserByUsername(userForm.getUsername());
         } catch (Exception e){
-            throw new InvalidCredentials("invalid login credentials");
+            throw new InvalidUserCredentials(userForm.getUsername());
         }
         if (!user.getPassword().equals(getMD5(userForm.getPassword()))){
-            throw new InvalidCredentials("invalid login credentials");
+            throw new InvalidPasswordCredentials(userForm.getUsername());
         }
         user.setJwtToken(jwtUtil.generateJWT(user));
 

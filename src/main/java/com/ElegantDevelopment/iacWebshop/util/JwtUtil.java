@@ -71,7 +71,7 @@ public class JwtUtil {
         Integer id = claims.getBody().get("userId", Integer.class);
         Long userId = id.longValue();
 
-        return userRepo.findById(userId).orElseThrow(() -> new SessionTimeoutException("session expired"));
+        return userRepo.findById(userId).orElseThrow(() -> new SessionTimeoutException());
     }
 
 }

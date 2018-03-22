@@ -29,6 +29,6 @@ public class UserRepoImpl implements UserRepoCustom {
                 return user;
             }
         }
-        throw new UserNotFoundException("unknown username");
+        throw new UserNotFoundException(username);
     }
 }
